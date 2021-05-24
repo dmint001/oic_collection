@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This is a sample Req Response WSDL to be used in OIC Connection -->
+<definitions targetNamespace="http://xmlns.example.com/inbound/input/HelloWorldService" name="HelloWorldService" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:tns="http://xmlns.example.com/inbound/input/HelloWorldService"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+<wsp:Policy xmlns="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" wsu:Id="http_basic_auth_over_ssl_service_policy">
+<sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+<wsp:Policy>
+<sp:AlgorithmSuite>
+<wsp:Policy>
+<sp:Basic128/>
+</wsp:Policy>
+</sp:AlgorithmSuite>
+<sp:TransportToken>
+<wsp:Policy>
+<sp:HttpsToken RequireClientCertificate="false">
+<wsp:Policy/>
+</sp:HttpsToken>
+</wsp:Policy>
+</sp:TransportToken>
+<sp:Layout>
+<wsp:Policy>
+<sp:Lax/>
+</wsp:Policy>
+</sp:Layout>
+</wsp:Policy>
+</sp:TransportBinding>
+</wsp:Policy>
+  <types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.example.com/inbound/input/HelloWorldService"
+                targetNamespace="http://xmlns.example.com/inbound/input/HelloWorldService" elementFormDefault="qualified">
+      <xsd:element name="processRequestInput">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Request" type="xsd:string"/>		
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+<xsd:element name="processResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Response" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>	  
+   </xsd:schema>
+  </types>
+  <message name="processRequest">
+    <part name="parameters" element="tns:processRequestInput"/>
+  </message>
+     <message name="replyMessage">
+        <part name="part1" element="tns:processResponse"/>
+    </message>
+  <portType name="processRequest_ptt">
+    <operation name="processRequest">
+      <input wsam:Action="http://xmlns.example.com/inbound/input/HelloWorldService/processRequest" message="tns:processRequest"/>
+	  <output wsam:Action="http://xmlns.example.com/inbound/input/HelloWorldService/processResponse" message="tns:replyMessage"/>
+    </operation>
+  </portType>
+</definitions>

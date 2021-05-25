@@ -1,0 +1,28 @@
+<soapenv:Envelope xmlns:sch="http://xmlns.oracle.com/scheduler" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://xmlns.oracle.com/scheduler/types">
+   <soapenv:Header>
+      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+      </wsse:Security>
+   </soapenv:Header>
+   <soapenv:Body>
+      <sch:submitRequest>
+         <sch:description>Running Supplier Balance Aging Report from webservice</sch:description>
+         <sch:jobDefinitionId>
+            <typ:name>InvoiceAgingAsOfDateReport</typ:name>
+            <typ:packageName>/oracle/apps/ess/financials/payables/invoices/transactions</typ:packageName>
+            <typ:type>JOB_DEFINITION</typ:type>
+         </sch:jobDefinitionId>
+         <sch:application>FscmEss</sch:application>
+		 	 <!-- PUT Date in UTC -->
+         <sch:requestedStartTime>2021-05-10T09:58:00</sch:requestedStartTime>
+         <sch:requestParameters>
+		 <!-- PUT ALL THE PARAMS HERE IN this repeating structure -->
+            <typ:parameter>
+               <typ:dataType>STRING</typ:dataType>
+               <typ:name>submit.argument1</typ:name>
+               <typ:value></typ:value>
+            </typ:parameter>
+		<!-- ENDS HERE -->
+         </sch:requestParameters>
+      </sch:submitRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

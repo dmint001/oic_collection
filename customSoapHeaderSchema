@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2005/08/addressing"
+            targetNamespace="http://www.w3.org/2005/08/addressing" elementFormDefault="qualified">
+        <xsd:element name="Action" type="xsd:string"/>
+        <xsd:element name="MessageID" type="xsd:string"/>
+</xsd:schema>
